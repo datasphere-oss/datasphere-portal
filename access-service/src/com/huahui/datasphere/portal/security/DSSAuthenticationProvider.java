@@ -1,3 +1,26 @@
+/*
+ * Apache License
+ * 
+ * Copyright (c) 2020 HuahuiData
+ * 
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
 package com.huahui.datasphere.portal.security;
 
 import java.io.IOException;
@@ -35,13 +58,9 @@ import com.google.common.base.Throwables;
 import com.huahui.datasphere.portal.model.UserToken;
 import com.huahui.datasphere.portal.util.JerseyClient;
 
-import infoworks.tools.config.*;
-import infoworks.tools.cube.client.*;
-import infoworks.tools.jwt.*;
-import infoworks.tools.security.aes.*;
 
 @Component
-public class IWAuthenticationProvider implements AuthenticationProvider
+public class DSSAuthenticationProvider implements AuthenticationProvider
 {
     private static final Logger logger;
     String hostName;
@@ -49,9 +68,9 @@ public class IWAuthenticationProvider implements AuthenticationProvider
     HttpRestClient client;
     Map<String, UserToken> tokenMap;
     
-    public IWAuthenticationProvider() {
-        this.hostName = IWConf.getConfig().getString("rest_api_host", "localhost");
-        this.port = IWConf.getConfig().getString("rest_api_port", "2999");
+    public DSSAuthenticationProvider() {
+        this.hostName = DSSConf.getConfig().getString("rest_api_host", "localhost");
+        this.port = DSSConf.getConfig().getString("rest_api_port", "2999");
         this.tokenMap = new HashMap<String, UserToken>();
     }
     
@@ -88,16 +107,16 @@ public class IWAuthenticationProvider implements AuthenticationProvider
             token = URLEncoder.encode(token, "UTF-8");
         }
         catch (Exception e) {
-            IWAuthenticationProvider.logger.error("Failed to get user auth token", (Throwable)e);
+            DSSAuthenticationProvider.logger.error("Failed to get user auth token", (Throwable)e);
             Throwables.propagate((Throwable)e);
         }
         final String url = "http://" + this.hostName + ":" + this.port + "/v1.1/user/profile.json?user=" + username + "&auth_token=" + token;
-        final IWUser user = JerseyClient.getUser(url);
+        final User user = JerseyClient.getUser(url);
         if (user == null) {
-            IWAuthenticationProvider.logger.error("Authentication failed for user: " + username);
+            DSSAuthenticationProvider.logger.error("Authentication failed for user: " + username);
             throw new BadCredentialsException("Bad Credentials");
         }
-        IWAuthenticationProvider.logger.info("Successfully Authenticated user: " + username + " with role: " + user.getRoles());
+        DSSAuthenticationProvider.logger.info("Successfully Authenticated user: " + username + " with role: " + user.getRoles());
         final List<GrantedAuthority> roles = new ArrayList<GrantedAuthority>();
         for (final String role : user.getRoles()) {
             roles.add((GrantedAuthority)new SimpleGrantedAuthority(role));
@@ -114,7 +133,7 @@ public class IWAuthenticationProvider implements AuthenticationProvider
             final CloseableHttpResponse httpResponse = HttpClients.createDefault().execute((HttpUriRequest)httpGet);
             final int statusCode = httpResponse.getStatusLine().getStatusCode();
             final String response = EntityUtils.toString(httpResponse.getEntity());
-            IWAuthenticationProvider.logger.info("Response = " + response);
+            DSSAuthenticationProvider.logger.info("Response = " + response);
             if (statusCode != 200) {
                 throw new IOException("Invalid response " + statusCode + " with response \n" + response);
             }
@@ -150,6 +169,6 @@ public class IWAuthenticationProvider implements AuthenticationProvider
     }
     
     static {
-        logger = LoggerFactory.getLogger((Class)IWAuthenticationProvider.class);
+        logger = LoggerFactory.getLogger((Class)DSSAuthenticationProvider.class);
     }
 }
