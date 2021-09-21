@@ -2,9 +2,11 @@ package com.huahui.datasphere.portal.util;
 
 import org.json.simple.parser.*;
 import org.json.simple.*;
-import infoworks.tools.jwt.*;
 import java.util.*;
 import org.springframework.http.*;
+
+import com.huahui.datasphere.portal.security.jwt.User;
+import com.huahui.datasphere.portal.security.jwt.UserRoles;
 import com.sun.jersey.api.client.*;
 import org.slf4j.*;
 
@@ -12,9 +14,9 @@ public class JerseyClient
 {
     private static final Logger logger;
     
-    public static IWUser getUser(final String url) {
+    public static User getUser(final String url) {
         try {
-            final IWUser user = new IWUser();
+            final User user = new User();
             final String userStr = (String)get(url, null, null).getEntity((Class)String.class);
             final JSONObject obj = (JSONObject)new JSONParser().parse(userStr);
             final Object isError = obj.get("error");
@@ -30,17 +32,17 @@ public class JerseyClient
             final List<String> userRoles = new ArrayList<String>();
             for (final Object o : roles) {
                 final String role = (String)o;
-                if (role.equals(IWUserRoles.modeller.name())) {
-                    userRoles.add(IWUserRoles.modeller.getValue());
+                if (role.equals(UserRoles.modeller.name())) {
+                    userRoles.add(UserRoles.modeller.getValue());
                 }
-                else if (role.equals(IWUserRoles.admin.name())) {
-                    userRoles.add(IWUserRoles.admin.getValue());
+                else if (role.equals(UserRoles.admin.name())) {
+                    userRoles.add(UserRoles.admin.getValue());
                 }
                 else {
-                    if (!role.equals(IWUserRoles.analyst.name())) {
+                    if (!role.equals(UserRoles.analyst.name())) {
                         continue;
                     }
-                    userRoles.add(IWUserRoles.analyst.getValue());
+                    userRoles.add(UserRoles.analyst.getValue());
                 }
             }
             user.setRoles((List)userRoles);

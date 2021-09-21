@@ -13,7 +13,7 @@ public class HTTPClient
 {
     private static final Logger logger;
     
-    public static IWUser getUser(final String url) {
+    public static User getUser(final String url) {
         try {
             final CloseableHttpClient httpClient = HttpClients.createDefault();
             final HttpGet request = new HttpGet(url);
@@ -27,7 +27,7 @@ public class HTTPClient
             }
             reader.close();
             httpClient.close();
-            final IWUser user = new IWUser();
+            final User user = new User();
             final JSONObject obj = (JSONObject)new JSONParser().parse(response.toString());
             final String isError = (String)obj.get("error");
             if (isError != null) {
@@ -42,17 +42,17 @@ public class HTTPClient
             final List<String> userRoles = new ArrayList<String>();
             for (final Object o : roles) {
                 final String role = (String)o;
-                if (role.equals(IWUserRoles.modeller.name())) {
-                    userRoles.add(IWUserRoles.modeller.getValue());
+                if (role.equals(UserRoles.modeller.name())) {
+                    userRoles.add(UserRoles.modeller.getValue());
                 }
-                else if (role.equals(IWUserRoles.admin.name())) {
-                    userRoles.add(IWUserRoles.admin.getValue());
+                else if (role.equals(UserRoles.admin.name())) {
+                    userRoles.add(UserRoles.admin.getValue());
                 }
                 else {
-                    if (!role.equals(IWUserRoles.analyst.name())) {
+                    if (!role.equals(UserRoles.analyst.name())) {
                         continue;
                     }
-                    userRoles.add(IWUserRoles.analyst.getValue());
+                    userRoles.add(UserRoles.analyst.getValue());
                 }
             }
             user.setRoles((List)userRoles);
