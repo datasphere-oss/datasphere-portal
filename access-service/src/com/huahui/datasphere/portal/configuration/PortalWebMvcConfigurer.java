@@ -4,7 +4,6 @@ import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.context.support.*;
 import org.springframework.context.annotation.*;
-import org.springframework.boot.autoconfigure.web.*;
 import org.springframework.boot.web.servlet.error.ErrorAttributes;
 
 @Configuration
