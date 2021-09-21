@@ -8,6 +8,7 @@ import java.util.Properties;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import com.google.common.base.Preconditions;
+import com.huahui.datasphere.portal.configuration.DSSConf;
 import com.sun.research.ws.wadl.Application;
 
 import io.jsonwebtoken.Claims;
@@ -28,7 +29,7 @@ public class JwtTokenGenerator
         claims.setIssuedAt(new Date());
 //        claims.setAudience();
 //        claims.setIssuer();
-        final String keystoreFile = new Properties().getProperty("server-keystore.jks");
+        final String keystoreFile = DSSConf.getConfig().getString("keystore",null);
         Preconditions.checkNotNull(keystoreFile, "Keystore file is not defined");
         final PrivateKey privateKey = KeyManager.getPrivateKeyFromKeystore(keystoreFile);
         return Jwts.builder().setClaims(claims).signWith(SignatureAlgorithm.RS256, (Key)privateKey).compact();
