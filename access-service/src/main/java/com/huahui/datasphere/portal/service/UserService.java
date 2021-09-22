@@ -29,12 +29,16 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
+import com.huahui.datasphere.portal.context.UpsertUserEventRequestContext;
 import com.huahui.datasphere.portal.dto.PasswordDTO;
 import com.huahui.datasphere.portal.dto.UserDTO;
+import com.huahui.datasphere.portal.dto.UserEventDTO;
 import com.huahui.datasphere.portal.dto.UserPropertyDTO;
 import com.huahui.datasphere.portal.dto.UserWithPasswordDTO;
-import com.huahui.datasphere.portal.type.security.Endpoint;
-import com.huahui.datasphere.portal.type.security.User;
+import com.huahui.datasphere.portal.security.UserPasswordDef;
+import com.huahui.datasphere.portal.type.security.EndpointInf;
+import com.huahui.datasphere.portal.type.security.SecurityToken;
+import com.huahui.datasphere.portal.type.security.UserInf;
 
 
 public interface UserService {
@@ -137,13 +141,13 @@ public interface UserService {
      * @param token
      *            the token
      */
-//    void insertToken(SecurityToken token);
+    void insertToken(SecurityToken token);
 
     /**
      * Gets user events.
      * @return
      */
-//    List<UserEventDTO> getUserEvents(String login, Date from, int page, int count);
+    List<UserEventDTO> getUserEvents(String login, Date from, int page, int count);
 
     /**
      * Count user events.
@@ -178,17 +182,17 @@ public interface UserService {
      * @param ueCtx the save context
      * @return DTO
      */
-//    UserEventDTO upsert(UpsertUserEventRequestContext ueCtx);
+    UserEventDTO upsert(UpsertUserEventRequestContext ueCtx);
     /**
      * Verifies and creates external user for full external authentication.
      * @param user the user
      */
-    void verifyAndUpserExternalUser(User user);
+    void verifyAndUpserExternalUser(UserInf user);
     /**
      * List of available APIs(eg SOAP, REST)
      * @return List of available APIs(eg SOAP, REST)
      */
-    List<Endpoint> getAPIList();
+    List<EndpointInf> getAPIList();
 
     /**
      * Check whether the user with name is an administrator.
@@ -209,7 +213,7 @@ public interface UserService {
 
     void saveUsers(final List<UserWithPasswordDTO> users);
 
-//    void addUsersPasswords(Map<String, List<UserPasswordDef>> usersPasswords);
+    void addUsersPasswords(Map<String, List<UserPasswordDef>> usersPasswords);
     /**
      * update password
      * @param login
