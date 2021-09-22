@@ -29,7 +29,6 @@ import java.util.Date;
 import java.util.List;
 
 
-
 public class User extends BaseUser implements Serializable {
 	
 	 /** The Constant serialVersionUID. */
@@ -38,14 +37,20 @@ public class User extends BaseUser implements Serializable {
     /** The Constant TABLE_NAME. */
     public static final String TABLE_NAME = "s_user";
     
-	private String userId; 
-	private String userName; 
-    private String password;
+	private String fullname;
+	
+	 // bi-directional one-to-one association to PasswordPO
+    /** The S passwords. */
+    private List<Password> password;
+    
     private String email;
+    
     private String mobile;
+    
     private String userState;
     
     private Long deptId;
+    
     private String deptName;
     
     // bi-directional many-to-many association to RolePO
@@ -67,6 +72,29 @@ public class User extends BaseUser implements Serializable {
     /** The admin. */
     private boolean admin;
     
+
+    /**
+     * User external provider source name.
+     */
+    private String source;
+
+    /**
+     * External user mark.
+     */
+    private boolean external;
+
+   
+    /**
+     * Email notification
+     */
+    private Boolean emailNotification;
+    
+  
+
+    /**
+     * Property values.
+     */
+    private final transient List<UserPropertyValue> properties = new ArrayList<>();
     
     
     // accessible data domains
@@ -76,45 +104,91 @@ public class User extends BaseUser implements Serializable {
    
 
     /** The apis. */
-    private final List<Api> apis = new ArrayList<>();
+    private List<Api> apis = new ArrayList<>();
 
     /** The label attribute values. */
-    private final List<LabelAttributeValue> labelAttributeValues = new ArrayList<>();
+    private List<LabelAttributeValue> labelAttributeValues = new ArrayList<>();
 
     
     public User() {
+    	
     }
     
-    public User(final String userId, final List<Role> roles) {
-        this.userId = userId;
-        this.roles = roles;
-    }
     
-   
-    
-    public String getUserId() {
-		return userId;
+ 
+	public String getFullname() {
+		return fullname;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+
+
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
 	}
 
-	public String getUserName() {
-		return userName;
-	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
 
-	public String getPassword() {
+	public List<Password> getPassword() {
 		return password;
 	}
 
-	public void setPassword(String password) {
+
+
+	public void setPassword(List<Password> password) {
 		this.password = password;
 	}
+
+
+
+	public String getSource() {
+		return source;
+	}
+
+
+
+	public void setSource(String source) {
+		this.source = source;
+	}
+
+
+
+	public boolean isExternal() {
+		return external;
+	}
+
+
+
+	public void setExternal(boolean external) {
+		this.external = external;
+	}
+
+
+
+	public Boolean getEmailNotification() {
+		return emailNotification;
+	}
+
+
+
+	public void setEmailNotification(Boolean emailNotification) {
+		this.emailNotification = emailNotification;
+	}
+
+
+
+	public List<UserPropertyValue> getProperties() {
+		return properties;
+	}
+
+
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+
+
+
+
 
 	public String getEmail() {
 		return email;
@@ -208,9 +282,25 @@ public class User extends BaseUser implements Serializable {
 		return roles;
 	}
 
+	
+
 	public List<Api> getApis() {
 		return apis;
 	}
+
+
+
+	public void setApis(List<Api> apis) {
+		this.apis = apis;
+	}
+
+
+
+	public void setLabelAttributeValues(List<LabelAttributeValue> labelAttributeValues) {
+		this.labelAttributeValues = labelAttributeValues;
+	}
+
+
 
 	public List<LabelAttributeValue> getLabelAttributeValues() {
 		return labelAttributeValues;
@@ -234,6 +324,6 @@ public class User extends BaseUser implements Serializable {
     
     @Override
     public String toString() {
-        return "User [emaild=" + this.email + ", name=" + this.userName + ", roles=" + this.roles + ", accessibleDomains=" + this.accessibleDomains + ", expires=" + this.expires + "]";
+        return "User [emaild=" + this.email + ", name=" + this.fullname + ", roles=" + this.roles + ", accessibleDomains=" + this.accessibleDomains + ", expires=" + this.expires + "]";
     }
 }
