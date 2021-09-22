@@ -47,7 +47,7 @@ public abstract class BaseUser extends BaseSecurity {
     /**
      * The S tokens.
      */
-//    private List<BaseToken> tokens;
+    private List<BaseToken> tokens;
 
     /**
      * Gets the id.
@@ -92,18 +92,18 @@ public abstract class BaseUser extends BaseSecurity {
      *
      * @return the s tokens
      */
-//    public List<BaseTokenPO> getTokens() {
-//        return this.tokens;
-//    }
+    public List<BaseToken> getTokens() {
+        return this.tokens;
+    }
 
     /**
      * Sets the s tokens.
      *
      * @param tokens the new s tokens
      */
-//    public void setTokens(List<BaseTokenPO> tokens) {
-//        this.tokens = tokens;
-//    }
+    public void setTokens(List<BaseToken> tokens) {
+        this.tokens = tokens;
+    }
 
     /**
      * Adds the s token.
@@ -111,12 +111,12 @@ public abstract class BaseUser extends BaseSecurity {
      * @param token the token
      * @return the token po
      */
-//    public BaseTokenPO addToken(BaseTokenPO token) {
-//        getTokens().add(token);
-//        token.setUser(this);
-//
-//        return token;
-//    }
+    public BaseToken addToken(BaseToken token) {
+        getTokens().add(token);
+        token.setUser(this);
+
+        return token;
+    }
 
     public Date getLoginDate() {
 		return loginDate;
@@ -134,12 +134,12 @@ public abstract class BaseUser extends BaseSecurity {
      * @param token the s token
      * @return the token po
      */
-//    public TokenPO removeToken(TokenPO token) {
-//        getTokens().remove(token);
-//        token.setUser(null);
-//
-//        return token;
-//    }
+    public Token removeToken(Token token) {
+        getTokens().remove(token);
+        token.setUser(null);
+
+        return token;
+    }
 
     public static class Fields extends BaseSecurity.Fields {
 
