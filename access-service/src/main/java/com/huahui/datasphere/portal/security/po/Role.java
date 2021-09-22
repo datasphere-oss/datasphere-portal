@@ -568,4 +568,22 @@ public class Role extends BaseSecurity implements Serializable {
             this.properties.add(rolePropertyValue);
         }
     }
+    
+    public enum UserRoles
+    {
+        modeller("MODELER"), 
+        admin("ADMIN"), 
+        analyst("ANALYST");
+        
+        private String name;
+        
+        private UserRoles(final String name) {
+            this.name = name;
+        }
+        
+        public String getValue() {
+            return this.name;
+        }
+    }
+    
 }
