@@ -38,7 +38,6 @@ import com.huahui.datasphere.portal.security.po.UserEvent;
 import com.huahui.datasphere.portal.security.po.UserProperty;
 import com.huahui.datasphere.portal.security.po.UserPropertyValue;
 import com.huahui.datasphere.portal.type.security.SecurityLabelInf;
-import com.huahui.datasphere.portal.type.security.UserInf;
 
 
 /**
