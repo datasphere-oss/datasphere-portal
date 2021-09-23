@@ -1118,4 +1118,7 @@ public class UserDaoImpl extends BaseDAOImpl implements UserDao {
 		namedJdbcTemplate.update(Password.Queries.DEACTIVATE_BY_USER_ID, params);
 		namedJdbcTemplate.update(Password.Queries.ACTIVATE_PASSWORD, params);
 	}
+
+
+	
 }

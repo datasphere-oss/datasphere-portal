@@ -46,16 +46,7 @@ import com.huahui.datasphere.portal.type.security.SecurityLabelInf;
 public interface UserDao {
 
 	
-	/**
-     * Save.
-     *
-     * @param user
-     *            the user
-     * @param userLabels
-     *            the user labels
-     * @return the user po
-     */
-	User create(User user);
+	
 	
     /**
      * add advanced security label feature.
@@ -99,19 +90,7 @@ public interface UserDao {
      */
     boolean updateLocale(String login, String locale);
 
-    /**
-     * Update.
-     *
-     * @param login
-     *            the login
-     * @param user
-     *            the user
-     * @param userLabels
-     *            the user labels
-     * @return the user po
-     */
-    User update(String login, User user);
-
+   
     
     /**
      * add advanced security label feature.
