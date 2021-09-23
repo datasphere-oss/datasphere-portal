@@ -33,6 +33,7 @@ import com.huahui.datasphere.portal.dto.SecuredResourceDTO;
 import com.huahui.datasphere.portal.security.po.Resource;
 import com.huahui.datasphere.portal.security.po.ResourceRight;
 import com.huahui.datasphere.portal.security.po.Right;
+import com.huahui.datasphere.portal.type.security.RightInf;
 import com.huahui.datasphere.portal.type.security.SecuredResourceCategoryInf;
 import com.huahui.datasphere.portal.type.security.SecuredResourceTypeInf;
 
@@ -68,13 +69,13 @@ public class RightConverter {
      *            the source
      * @return the list
      */
-    public static List<Right> convertRightsPoToDto(List<ResourceRight> source) {
+    public static List<RightInf> convertRightsPoToDto(List<ResourceRight> source) {
 
         if (CollectionUtils.isEmpty(source)) {
             return Collections.emptyList();
         }
 
-        List<Right> target = new ArrayList<>();
+        List<RightInf> target = new ArrayList<>();
         Map<Resource, List<Right>> map = new HashMap<>();
         for (ResourceRight rr : source) {
             if (map.containsKey(rr.getResource())) {
