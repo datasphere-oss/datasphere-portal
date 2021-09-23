@@ -20,13 +20,15 @@ import com.huahui.datasphere.portal.security.po.Password;
 import com.huahui.datasphere.portal.security.po.Role;
 import com.huahui.datasphere.portal.security.po.User;
 import com.huahui.datasphere.portal.type.security.EndpointInf;
+import com.huahui.datasphere.portal.type.security.RoleInf;
 import com.huahui.datasphere.portal.type.security.UserInf;
+import com.huahui.datasphere.portal.util.SecurityUtils;
 
 
 /**
  * The Class UserConverter.
  *
- * @author ilya.bykov
+ * @author theseusyang
  */
 public final class UserConverter {
 
@@ -63,7 +65,7 @@ public final class UserConverter {
         if (source.getLocale() != null) {
             target.setLocale(new Locale(source.getLocale()));
         }
-        target.setFullName(source.getFullname());
+        target.setFullName(source.getFullName());
         target.setLogin(source.getLogin());
         target.setUpdatedBy(source.getUpdatedBy());
         target.setCreatedBy(source.getCreatedBy());
@@ -162,13 +164,13 @@ public final class UserConverter {
      *            the source
      * @return the list
      */
-    private static List<Role> convertRoles(List<Role> source) {
+    private static List<RoleInf> convertRoles(List<Role> source) {
 
         if (CollectionUtils.isEmpty(source)) {
             return Collections.emptyList();
         }
 
-        List<Role> target = new ArrayList<>();
+        List<RoleInf> target = new ArrayList<>();
         for (Role po : source) {
             target.add(RoleConverter.convertRole(po));
         }
