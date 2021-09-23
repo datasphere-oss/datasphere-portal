@@ -34,6 +34,7 @@ import com.huahui.datasphere.portal.security.po.Right;
 import com.huahui.datasphere.portal.security.po.Role;
 import com.huahui.datasphere.portal.security.po.RoleProperty;
 import com.huahui.datasphere.portal.security.po.RolePropertyValue;
+import com.huahui.datasphere.portal.type.security.SecuredResourceCategoryInf;
 import com.huahui.datasphere.portal.type.security.SecurityLabelInf;
 
 
@@ -217,7 +218,7 @@ public interface RoleDao {
 	 * 
 	 * @param categories the categories to drop
 	 */
-	void dropResources(SecuredResourceCategory... categories);
+	void dropResources(SecuredResourceCategoryInf... categories);
 
 	/**
 	 * Update display name for security resource by name
