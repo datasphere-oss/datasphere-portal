@@ -55,7 +55,7 @@ public class UserPropertyConverter {
      * @param propertys the property P os
      * @return the list
      */
-    public static List<UserPropertyDTO> convertPropertyPOs(List<UserProperty> propertys) {
+    public static List<UserPropertyDTO> convertPropertys(List<UserProperty> propertys) {
         if (propertys == null) {
             return new ArrayList<>();
         }
@@ -113,7 +113,7 @@ public class UserPropertyConverter {
      * @param values the value P os
      * @return the list
      */
-    public static List<UserPropertyDTO> convertValuePOs(List<UserPropertyValue> values) {
+    public static List<UserPropertyDTO> convertValues(List<UserPropertyValue> values) {
 
         if (CollectionUtils.isEmpty(values)) {
             return Collections.emptyList();
