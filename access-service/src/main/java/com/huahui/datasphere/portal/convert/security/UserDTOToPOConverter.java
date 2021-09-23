@@ -33,8 +33,12 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 import com.huahui.datasphere.portal.dto.UserWithPasswordDTO;
 import com.huahui.datasphere.portal.security.po.Api;
 import com.huahui.datasphere.portal.security.po.Password;
+import com.huahui.datasphere.portal.security.po.Role;
 import com.huahui.datasphere.portal.security.po.User;
+import com.huahui.datasphere.portal.security.po.UserProperty;
+import com.huahui.datasphere.portal.security.po.UserPropertyValue;
 import com.huahui.datasphere.portal.type.security.EndpointInf;
+import com.huahui.datasphere.portal.util.SecurityUtils;
 
 /**
  * The Class UserDTOToPOConverter.
@@ -65,15 +69,14 @@ public class UserDTOToPOConverter {
             target.setCreatedBy(source.getCreatedBy());
         }
         target.setEmail(source.getEmail());
-        target.setFirstName(source.getFirstName());
-        target.setLastName(source.getLastName());
+        target.setFullName(source.getFullName());
         // Populate user first and last name, if is need.
-        if(StringUtils.isEmpty(target.getFirstName())
-                && StringUtils.isEmpty(target.getLastName())
-                && StringUtils.isNotEmpty(source.getFullName())){
-            target.setFirstName(StringUtils.substringBefore(source.getFullName(), " "));
-            target.setLastName(StringUtils.substringAfter(source.getFullName(), " "));
-        }
+//        if(StringUtils.isEmpty(target.getFirstName())
+//                && StringUtils.isEmpty(target.getLastName())
+//                && StringUtils.isNotEmpty(source.getFullName())){
+//            target.setFirstName(StringUtils.substringBefore(source.getFullName(), " "));
+//            target.setLastName(StringUtils.substringAfter(source.getFullName(), " "));
+//        }
         target.setLogin(source.getLogin());
         target.setNotes(null);
         target.setExternal(source.isExternal());
@@ -91,9 +94,9 @@ public class UserDTOToPOConverter {
         if (CollectionUtils.isNotEmpty(source.getCustomProperties())) {
             target.setProperties(source.getCustomProperties().stream()
                     .map(customProperty -> {
-                        final UserPropertyValuePO userPropertyValuePO = new UserPropertyValuePO();
+                        final UserPropertyValue userPropertyValuePO = new UserPropertyValue();
                         userPropertyValuePO.setValue(customProperty.getValue());
-                        final UserPropertyPO property = new UserPropertyPO();
+                        final UserProperty property = new UserProperty();
                         property.setName(customProperty.getName());
                         userPropertyValuePO.setProperty(property);
                         return userPropertyValuePO;
@@ -101,7 +104,7 @@ public class UserDTOToPOConverter {
         }
         if (CollectionUtils.isNotEmpty(source.getRoles())) {
             target.setRoles(source.getRoles().stream()
-                    .map(r -> new RolePO(r.getName()))
+                    .map(r -> new Role(r.getName()))
                     .collect(Collectors.toList()));
         }
         // password changed?
