@@ -4,6 +4,7 @@ import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.context.support.*;
 import org.springframework.context.annotation.*;
+import org.springframework.boot.web.servlet.error.DefaultErrorAttributes;
 import org.springframework.boot.web.servlet.error.ErrorAttributes;
 
 @Configuration
@@ -23,6 +24,6 @@ public class PortalWebMvcConfigurer extends WebMvcConfigurerAdapter
     
     @Bean
     public ErrorAttributes errorAttributes() {
-        return (ErrorAttributes)new PortalWebMvcConfigurer();
+        return (ErrorAttributes)new DefaultErrorAttributes();
     }
 }

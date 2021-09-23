@@ -9,6 +9,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 import com.google.common.base.Preconditions;
 import com.huahui.datasphere.portal.configuration.DSSConf;
+import com.huahui.datasphere.portal.security.po.User;
 import com.sun.research.ws.wadl.Application;
 
 import io.jsonwebtoken.Claims;

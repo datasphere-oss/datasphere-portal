@@ -48,11 +48,11 @@ public class DSSPathUtil
         return addSeparatorIfNotExists(appConf);
     }
     
-    public static final String getIWConfHome() {
+    public static final String getDSSConfHome() {
         return addSeparatorIfNotExists(getDSSHome() + "conf");
     }
     
-    public static final String getIWManifestFilePath() {
+    public static final String getDSSManifestFilePath() {
         return getDSSHome() + "manifest.json";
     }
     
@@ -126,7 +126,7 @@ public class DSSPathUtil
    
     
     public static String getErrorConfPath() {
-        return addSeparatorIfNotExists(getIWConfHome()) + "error.conf.properties";
+        return addSeparatorIfNotExists(getDSSConfHome()) + "error.conf.properties";
     }
     
     public static Path getOrCreatePath(final String pathString, final FileSystem fs) throws IOException {

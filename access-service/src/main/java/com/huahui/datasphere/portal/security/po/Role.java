@@ -105,8 +105,7 @@ public class Role extends BaseSecurity implements Serializable {
      */
     private transient List<RolePropertyValue> properties = new ArrayList<>();
 
-    /* The label attribute values. */
-//    private List<LabelAttributeValuePO> labelAttributeValues;
+   
 
     /**
      * Instantiates a new role po.
@@ -280,7 +279,7 @@ public class Role extends BaseSecurity implements Serializable {
      *
      * @param labels the new label p os
      */
-    public Role setLabelPOs(List<Label> labels) {
+    public Role setLabels(List<Label> labels) {
         this.labels.clear();
         if (CollectionUtils.isNotEmpty(labels)) {
             this.labels.addAll(labels);
@@ -293,7 +292,7 @@ public class Role extends BaseSecurity implements Serializable {
      *
      * @param labels the label p os
      */
-    public Role addLabelPOs(List<Label> labels) {
+    public Role addLabels(List<Label> labels) {
         if (CollectionUtils.isNotEmpty(labels)) {
             this.labels.addAll(labels);
         }

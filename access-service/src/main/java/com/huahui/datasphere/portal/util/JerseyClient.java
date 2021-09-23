@@ -5,8 +5,8 @@ import org.json.simple.*;
 import java.util.*;
 import org.springframework.http.*;
 
-import com.huahui.datasphere.portal.security.jwt.User;
-import com.huahui.datasphere.portal.security.jwt.UserRoles;
+import com.huahui.datasphere.portal.security.po.User;
+import com.huahui.datasphere.portal.security.po.UserRoles;
 import com.sun.jersey.api.client.*;
 import org.slf4j.*;
 

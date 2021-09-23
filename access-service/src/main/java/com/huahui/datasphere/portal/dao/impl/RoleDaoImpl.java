@@ -973,8 +973,8 @@ public class RoleDaoImpl extends BaseDAOImpl implements RoleDao {
     /**
      * Drop all resources.
      */
-//    @Override
-    public void dropResources(SecuredResourceCategoryInf... categories) {
+    @Override
+    public void dropResources(SecuredResourceCategory... categories) {
 
         boolean hasMetaModel = false;
         if (ArrayUtils.isEmpty(categories)) {

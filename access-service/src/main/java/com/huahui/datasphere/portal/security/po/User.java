@@ -40,7 +40,7 @@ public class User extends BaseUser implements Serializable {
     /** The Constant TABLE_NAME. */
     public static final String TABLE_NAME = "s_user";
     
-	private String fullname;
+	private String fullName;
 	
 	 // bi-directional one-to-one association to PasswordPO
     /** The S passwords. */
@@ -119,15 +119,25 @@ public class User extends BaseUser implements Serializable {
     
     
  
-	public String getFullname() {
-		return fullname;
+
+
+
+	public String getFullName() {
+		return fullName;
 	}
 
 
 
-	public void setFullname(String fullname) {
-		this.fullname = fullname;
+
+
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
+
+
+
+
 
 
 	public Boolean getEmailNotification() {
@@ -515,11 +525,11 @@ public class User extends BaseUser implements Serializable {
         /** The Constant LOCALE. */
         public static final String LOCALE = "LOCALE";
 
-        /** The Constant FIRST_NAME. */
-        public static final String FIRST_NAME = "FIRST_NAME";
-
-        /** The Constant LAST_NAME. */
-        public static final String LAST_NAME = "LAST_NAME";
+        
+        /** The Constant FULL_NAME. */
+        public static final String FULL_NAME = "FULL_NAME";
+        
+        
 
         /** The Constant NOTES. */
         public static final String NOTES = "NOTES";
@@ -549,7 +559,7 @@ public class User extends BaseUser implements Serializable {
          * Combined fields.
          */
         public static final String ALL = String.join(DELIMETER,   CREATED_AT,  CREATED_BY,
-                LOGIN, EMAIL, LOCALE, FIRST_NAME, LAST_NAME, NOTES, ACTIVE, ADMIN, SOURCE, EXTERNAL, EMAIL_NOTIFICATION);
+                LOGIN, EMAIL, LOCALE, FULL_NAME, NOTES, ACTIVE, ADMIN, SOURCE, EXTERNAL, EMAIL_NOTIFICATION);
         /** All fields combined. */
         public static final String ALL_WITH_TABLE_NAME = String.join(
                 DELIMETER,
@@ -557,8 +567,7 @@ public class User extends BaseUser implements Serializable {
                 String.join(DOT, TABLE_NAME, LOGIN),
                 String.join(DOT, TABLE_NAME, EMAIL),
                 String.join(DOT, TABLE_NAME, LOCALE),
-                String.join(DOT, TABLE_NAME, FIRST_NAME),
-                String.join(DOT, TABLE_NAME, LAST_NAME),
+                String.join(DOT, TABLE_NAME, FULL_NAME),
                 String.join(DOT, TABLE_NAME, NOTES),
                 String.join(DOT, TABLE_NAME, ACTIVE),
                 String.join(DOT, TABLE_NAME, ADMIN),
@@ -575,8 +584,7 @@ public class User extends BaseUser implements Serializable {
                 String.join(EQUALS, LOGIN, LOGIN),
                 String.join(EQUALS, EMAIL, EMAIL),
                 String.join(EQUALS, LOCALE, LOCALE),
-                String.join(EQUALS, FIRST_NAME, FIRST_NAME),
-                String.join(EQUALS, LAST_NAME, LAST_NAME),
+                String.join(EQUALS, FULL_NAME, FULL_NAME),
                 String.join(EQUALS, NOTES, NOTES),
                 String.join(EQUALS, ACTIVE, ACTIVE),
                 String.join(EQUALS, ADMIN, ADMIN),
@@ -593,8 +601,7 @@ public class User extends BaseUser implements Serializable {
                 String.join("", DOTS, LOGIN),
                 String.join("", DOTS, EMAIL),
                 String.join("", DOTS, LOCALE),
-                String.join("", DOTS, FIRST_NAME),
-                String.join("", DOTS, LAST_NAME),
+                String.join("", DOTS, FULL_NAME),
                 String.join("", DOTS, NOTES),
                 String.join("", DOTS, ACTIVE),
                 String.join("", DOTS, ADMIN),

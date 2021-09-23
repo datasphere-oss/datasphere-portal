@@ -16,8 +16,8 @@ import org.json.simple.parser.JSONParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.huahui.datasphere.portal.security.jwt.User;
-import com.huahui.datasphere.portal.security.jwt.UserRoles;
+import com.huahui.datasphere.portal.security.po.User;
+import com.huahui.datasphere.portal.security.po.UserRoles;
 
 public class HTTPClient
 {

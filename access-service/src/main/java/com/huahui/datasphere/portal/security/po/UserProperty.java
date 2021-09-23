@@ -21,7 +21,6 @@
  *
  */
 
-
 package com.huahui.datasphere.portal.security.po;
 
 /**

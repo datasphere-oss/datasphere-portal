@@ -12,6 +12,8 @@ import java.util.Properties;
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.map.ObjectMapper;
 
+import com.huahui.datasphere.portal.security.po.User;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 

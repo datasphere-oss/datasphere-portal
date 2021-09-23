@@ -9,6 +9,8 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.bson.types.ObjectId;
 
+import com.huahui.datasphere.portal.security.po.User;
+import com.huahui.datasphere.portal.security.po.UserRoles;
 import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
