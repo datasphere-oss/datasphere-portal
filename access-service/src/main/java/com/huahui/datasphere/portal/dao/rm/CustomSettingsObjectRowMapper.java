@@ -1,36 +1,41 @@
 /*
- * Unidata Platform Community Edition
- * Copyright (c) 2013-2020, UNIDATA LLC, All rights reserved.
- * This file is part of the Unidata Platform Community Edition software.
+ * Apache License
  * 
- * Unidata Platform Community Edition is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Copyright (c) 2021 HuahuiData
  * 
- * Unidata Platform Community Edition is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <https://www.gnu.org/licenses/>.
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
  */
 
 package com.huahui.datasphere.portal.dao.rm;
-
-import org.springframework.jdbc.core.RowMapper;
-import org.unidata.mdm.core.po.CustomStorageRecordPO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Objects;
 
+import org.springframework.jdbc.core.RowMapper;
+
+import com.huahui.datasphere.portal.po.CustomStorageRecord;
+
 /**
- * @author Dmitry Kopin
+ * @author theseusyang
  * Mapper for custom settings object
  */
-public class CustomSettingsObjectRowMapper implements RowMapper<CustomStorageRecordPO> {
+public class CustomSettingsObjectRowMapper implements RowMapper<CustomStorageRecord> {
 
 
 
@@ -50,18 +55,18 @@ public class CustomSettingsObjectRowMapper implements RowMapper<CustomStorageRec
      * {@inheritDoc}
      */
     @Override
-    public CustomStorageRecordPO mapRow(ResultSet rs, int rowNum) throws SQLException {
-        CustomStorageRecordPO result = new CustomStorageRecordPO();
-        result.setKey(rs.getString(CustomStorageRecordPO.FIELD_KEY));
+    public CustomStorageRecord mapRow(ResultSet rs, int rowNum) throws SQLException {
+        CustomStorageRecord result = new CustomStorageRecord();
+        result.setKey(rs.getString(CustomStorageRecord.FIELD_KEY));
         if(Objects.equals(result.getKey(), "")){
             result.setKey(null);
         }
-        result.setUser(rs.getString(CustomStorageRecordPO.FIELD_USER_NAME));
+        result.setUser(rs.getString(CustomStorageRecord.FIELD_USER_NAME));
         if(Objects.equals(result.getUser(), "")){
             result.setUser(null);
         }
-        result.setValue(rs.getString(CustomStorageRecordPO.FIELD_VALUE));
-        result.setUpdateDate(rs.getTimestamp(CustomStorageRecordPO.FIELD_UPDATE_DATE));
+        result.setValue(rs.getString(CustomStorageRecord.FIELD_VALUE));
+        result.setUpdateDate(rs.getTimestamp(CustomStorageRecord.FIELD_UPDATE_DATE));
         return result;
     }
 

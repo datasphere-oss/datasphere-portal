@@ -1,20 +1,24 @@
 /*
- * Unidata Platform Community Edition
- * Copyright (c) 2013-2020, UNIDATA LLC, All rights reserved.
- * This file is part of the Unidata Platform Community Edition software.
+ * Apache License
+ * 
+ * Copyright (c) 2021 HuahuiData
+ * 
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
  *
- * Unidata Platform Community Edition is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unidata Platform Community Edition is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
 package com.huahui.datasphere.portal.dao.rm;
@@ -23,13 +27,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
-import org.unidata.mdm.core.po.AbstractObjectPO;
+
+import com.huahui.datasphere.portal.po.AbstractObject;
 
 /**
- * @author Mikhail Mikhailov
+ * @author theseusyang
  * Abstract PO mapper.
  */
-public abstract class AbstractRowMapper<T extends AbstractObjectPO> implements RowMapper<T> {
+public abstract class AbstractRowMapper<T extends AbstractObject> implements RowMapper<T> {
 
     /**
      * Constructor.
@@ -46,9 +51,9 @@ public abstract class AbstractRowMapper<T extends AbstractObjectPO> implements R
      * @throws SQLException if something went wrong
      */
     protected void mapRow(T t, ResultSet rs, int rowNum) throws SQLException {
-        t.setCreateDate(rs.getTimestamp(AbstractObjectPO.FIELD_CREATE_DATE));
-        t.setCreatedBy(rs.getString(AbstractObjectPO.FIELD_CREATED_BY));
-        t.setUpdateDate(rs.getTimestamp(AbstractObjectPO.FIELD_UPDATE_DATE));
-        t.setUpdatedBy(rs.getString(AbstractObjectPO.FIELD_UPDATED_BY));
+        t.setCreateDate(rs.getTimestamp(AbstractObject.FIELD_CREATE_DATE));
+        t.setCreatedBy(rs.getString(AbstractObject.FIELD_CREATED_BY));
+        t.setUpdateDate(rs.getTimestamp(AbstractObject.FIELD_UPDATE_DATE));
+        t.setUpdatedBy(rs.getString(AbstractObject.FIELD_UPDATED_BY));
     }
 }
